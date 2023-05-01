@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Griswold-A4-Movie-Library-Assignment", "Griswold-A4-Movie-Library-Assignment.csproj", "{D5660A9C-7949-479D-9CFF-0F51129540B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLibraryEntities", "..\MovieLibraryEntities\MovieLibraryEntities.csproj", "{FA54F430-AD94-40AE-960D-711032F12951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5660A9C-7949-479D-9CFF-0F51129540B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5660A9C-7949-479D-9CFF-0F51129540B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5660A9C-7949-479D-9CFF-0F51129540B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5660A9C-7949-479D-9CFF-0F51129540B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA54F430-AD94-40AE-960D-711032F12951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA54F430-AD94-40AE-960D-711032F12951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA54F430-AD94-40AE-960D-711032F12951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA54F430-AD94-40AE-960D-711032F12951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DE3D891-8D9B-4EA1-8F71-EDD2CF6B5401}
+	EndGlobalSection
+EndGlobal
