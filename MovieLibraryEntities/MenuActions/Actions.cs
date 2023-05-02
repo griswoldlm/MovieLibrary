@@ -18,8 +18,8 @@ namespace MovieLibraryEntities.MenuActions
                 Console.WriteLine("Please enter a movie title: ");
                 var title = Console.ReadLine();
 
-                Console.WriteLine("Please enter movie release year: ");
-                DateTime year = Convert.ToDateTime(Console.ReadLine());
+                Console.WriteLine("Please enter movie release date: ");
+                var year = Convert.ToDateTime(Console.ReadLine());
 
                 var movie = new Movie();
                 movie.Title = title;
@@ -27,12 +27,22 @@ namespace MovieLibraryEntities.MenuActions
 
                 db.Movies.Add(movie);
                 db.SaveChanges();
-                Console.WriteLine($"ID: {movie.Id}, Title: {movie.Title}, ReleaseDate: {movie.ReleaseDate}");
+                Console.WriteLine($"ID: {movie.Id}, Title: {movie.Title}, Release Date: {movie.ReleaseDate}");
             }
         }
 
         public void SearchMovie()
         {
+            using (var db = new MovieContext())
+            {
+                var movies = db.Movies;
+
+                Console.WriteLine("The occupations are as follows:");
+                foreach (var mov in movies)
+                {
+                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+                }
+            }
         }
 
         public void UpdateMovie()
@@ -44,23 +54,35 @@ namespace MovieLibraryEntities.MenuActions
 
                 using (var db = new MovieContext())
                 {
-                    var mov = db.Movies.FirstOrDefault(x => x.Title == movie);
+                    var mov = db.Movies.FirstOrDefault(x => x.Title == movieTitle);
                     Console.WriteLine("Please enter the updated title: ");
                     var movieUpdateTitle = Console.ReadLine();
                     mov.Title = movieUpdateTitle;
 
 
-                    Console.WriteLine("Please enter the updated release year: ");
+                    Console.WriteLine("Please enter the updated release date: ");
                     DateTime year = Convert.ToDateTime(Console.ReadLine());
                     mov.ReleaseDate = year;
 
                     db.SaveChanges();
-                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, ReleaseDate: {mov.ReleaseDate}");
+                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+                    
                 }
             }
         }
         public void DeleteMovie()
         {
+            Console.WriteLine("Please enter a movie title to delete: ");
+            var movieTitle = Console.ReadLine();
+
+            using (var db = new MovieContext())
+            {
+                var mov = db.Movies.FirstOrDefault(x => x.Title == movieTitle);
+                db.Movies.Remove(mov);
+                db.SaveChanges();
+
+                Console.WriteLine($"Movie Deleted: {mov.Title}");
+            }
         }
     }
 }

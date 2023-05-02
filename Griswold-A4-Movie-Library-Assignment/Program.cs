@@ -23,6 +23,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                 {
                     Actions addmovie = new Actions();
                     addmovie.AddMovie();
+                    break;
                 }
 
                 // 2. Search Movie (R)
@@ -30,6 +31,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                 {
                     Actions searchmovie = new Actions();
                     searchmovie.SearchMovie();
+                    break;
                 }
 
                 // 3. Update Movie (U)
@@ -37,6 +39,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                 {
                     Actions updatemovies = new Actions();
                     updatemovies.UpdateMovie();
+                    break;
                 }
 
                 // 4. Delete Movie (D)
@@ -44,6 +47,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                 {
                     Actions deletemovie = new Actions();
                     deletemovie.DeleteMovie();
+                    break;
                 }
 
                 // 0. Exit Program
