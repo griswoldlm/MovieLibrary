@@ -1,4 +1,5 @@
-﻿using MovieLibraryEntities.Context;
+﻿using Castle.DynamicProxy.Generators;
+using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 using System;
 using System.Collections.Generic;
@@ -35,13 +36,23 @@ namespace MovieLibraryEntities.MenuActions
         {
             using (var db = new MovieContext())
             {
-                var movies = db.Movies;
+                Console.WriteLine("What title would you like to search?");
+                var searchString = Console.ReadLine();
 
-                Console.WriteLine("The movies are as follows:");
-                foreach (var mov in movies)
+                List<Movie> movies = db.Movies.Where(m => m.Title.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+                foreach(var movie in movies)
                 {
-                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+                    Console.WriteLine($"Your search includes the following:\t{movie.Title}");
                 }
+
+                //var movies = db.Movies;
+
+                //Console.WriteLine("The movies are as follows:");
+                //foreach (var mov in movies)
+                //{
+                //    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+                //}
             }
         }
 
