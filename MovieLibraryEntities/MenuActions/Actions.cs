@@ -39,11 +39,11 @@ namespace MovieLibraryEntities.MenuActions
                 Console.WriteLine("What title would you like to search?");
                 var searchString = Console.ReadLine();
 
-                List<Movie> movies = db.Movies.Where(m => m.Title.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                List<Movie> movies = db.Movies.ToList().Where(m => m.Title.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
                 foreach(var movie in movies)
                 {
-                    Console.WriteLine($"Your search includes the following:\t{movie.Title}");
+                    Console.WriteLine($"Your search includes the following titles: \t{movie.Title}");
                 }
 
                 //var movies = db.Movies;
