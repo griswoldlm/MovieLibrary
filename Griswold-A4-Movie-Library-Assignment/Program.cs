@@ -21,29 +21,29 @@ namespace Griswold_A4_Movie_Library_Assignment
                 // 1. Add Movie (C)
                 if (choice == "1")
                 {
-                    MenuActions addmovie = new MenuActions();
-                    addmovie.Add();
+                    Actions addmovie = new Actions();
+                    addmovie.AddMovie();
                 }
 
                 // 2. Search Movie (R)
                 else if (choice == "2")
                 {
-                    MenuActions searchmovie = new MenuActions();
-                    searchmovie.Search();
+                    Actions searchmovie = new Actions();
+                    searchmovie.SearchMovie();
                 }
 
                 // 3. Update Movie (U)
                 else if (choice == "3")
                 {
-                    MenuActions updatemovies = new MenuActions();
-                    updatemovies.Update();
+                    Actions updatemovies = new Actions();
+                    updatemovies.UpdateMovie();
                 }
 
                 // 4. Delete Movie (D)
                 else if (choice == "4")
                 {
-                    MenuActions deletemovie = new MenuActions();
-                    deletemovie.Delete();
+                    Actions deletemovie = new Actions();
+                    deletemovie.DeleteMovie();
                 }
 
                 // 0. Exit Program
