@@ -37,7 +37,7 @@ namespace MovieLibraryEntities.MenuActions
             {
                 var movies = db.Movies;
 
-                Console.WriteLine("The occupations are as follows:");
+                Console.WriteLine("The movies are as follows:");
                 foreach (var mov in movies)
                 {
                     Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
