@@ -43,7 +43,7 @@ namespace MovieLibraryEntities.MenuActions
 
                 foreach(var movie in movies)
                 {
-                    Console.WriteLine($"Your search includes the following titles: \t{movie.Title}");
+                    Console.WriteLine($"Your search includes the following titles: \t{movie.Title} {movie.MovieGenres} {movie.ReleaseDate}");
                 }
 
                 //var movies = db.Movies;

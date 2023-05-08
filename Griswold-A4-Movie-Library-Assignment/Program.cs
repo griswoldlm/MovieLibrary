@@ -13,7 +13,7 @@ namespace Griswold_A4_Movie_Library_Assignment
         static void Main(string[] args)
         {
             // Menu
-            Console.WriteLine("Hello User, Would you like to... \n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie");
+            Console.WriteLine("******MENU******\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie");
             var choice = Console.ReadLine();
 
             do
@@ -52,12 +52,12 @@ namespace Griswold_A4_Movie_Library_Assignment
 
                 // 0. Exit Program
                 else if (choice == "0")
-                {                   
+                {
                     Console.WriteLine("Exiting program.");
                     break;
                 }
 
-            } while (choice == "0" || choice == "1" || choice == "2" || choice == "3" || choice == "4");
+            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4");
         }
     }
 }
