@@ -57,7 +57,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                     break;
                 }
 
-            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4");
+            } while (choice == "0" || choice == "1" || choice == "2" || choice == "3" || choice == "4");
         }
     }
 }
