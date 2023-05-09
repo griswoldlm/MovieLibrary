@@ -13,7 +13,8 @@ namespace Griswold_A4_Movie_Library_Assignment
         static void Main(string[] args)
         {
             // Menu
-            Console.WriteLine("******MENU******\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie");
+            Console.WriteLine("************\n----Menu----\n************" +
+                "\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie\n5.Display Movies\n6.Add User");
             var choice = Console.ReadLine();
 
             do
@@ -50,6 +51,22 @@ namespace Griswold_A4_Movie_Library_Assignment
                     break;
                 }
 
+                // 5. Display Movies
+                else if (choice == "5")
+                {
+                    Actions displaymovies = new Actions();
+                    displaymovies.DisplayMovies();
+                    break;
+                }
+
+                // 6. Add User
+                else if (choice == "6")
+                {
+                    Actions adduser = new Actions();
+                    adduser.AddUser();
+                    break;
+                }
+
                 // 0. Exit Program
                 else if (choice == "0")
                 {
@@ -57,7 +74,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                     break;
                 }
 
-            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4");
+            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6");
         }
     }
 }

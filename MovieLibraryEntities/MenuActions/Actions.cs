@@ -1,8 +1,10 @@
 ﻿using Castle.DynamicProxy.Generators;
 using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
+using MovieLibraryOO.Migrations;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,6 @@ namespace MovieLibraryEntities.MenuActions
     {
         public void AddMovie()
         {
-
             using (var db = new MovieContext())
             {
                 Console.WriteLine("Please enter a movie title: ");
@@ -43,7 +44,7 @@ namespace MovieLibraryEntities.MenuActions
 
                 foreach(var movie in movies)
                 {
-                    Console.WriteLine($"Your search includes the following titles: \t{movie.Title} {movie.MovieGenres} {movie.ReleaseDate}");
+                    Console.WriteLine($"Your search includes the following titles: \t{movie.Title}");
                 }
 
                 //var movies = db.Movies;
@@ -95,7 +96,60 @@ namespace MovieLibraryEntities.MenuActions
                 Console.WriteLine($"Movie Deleted: {mov.Title}");
             }
         }
+        public void DisplayMovies()
+        {
+            Console.WriteLine("How many movies would you like to display? ");
+            int count = Convert.ToInt32(Console.ReadLine());
+
+            using (var db = new MovieContext())
+            {
+                var movies = db.Movies.Take(count);
+
+                //List<Movie> movies = db.Movies.OrderByDescending(m => m.Id).Where(m => m.Id == numberOfMovies).ToList();
+
+                Console.WriteLine("The movies are as follows:");
+                foreach (var mov in movies)
+                {
+                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+                }
+            }
+        }
+        public void AddUser()
+        {
+            using (var db = new MovieContext())
+            {
+                Console.WriteLine("Please enter the user's age: ");
+                var age = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please enter the user's gender as F or M: ");
+                var gender = Console.ReadLine();
+
+                Console.WriteLine("Please enter the user's zip code: ");
+                var zip = Console.ReadLine();
+
+                //List all Occupations
+                var occupations = db.Occupations;
+                Console.WriteLine("The occupations are as follows:");
+                foreach (var occ in occupations)
+                {
+                    Console.WriteLine($"{occ.Id} {occ.Name}");
+                }
+
+                Console.WriteLine("Please enter the number of the user's occupation: ");
+                var occupation = Convert.ToInt32(Console.ReadLine());
+
+                var user = new User();
+                user.Age = age;
+                user.Gender = gender;
+                user.ZipCode = zip;
+                user.Occupation.Id = occupation;
+
+                db.Users.Add(user);
+                db.SaveChanges();
+                Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {occ.Id}");
+
+            }
+        }
     }
 }
-
 
