@@ -1,8 +1,9 @@
-﻿using MovieLibraryEntities.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 using MovieLibraryOO.Migrations;
 using System;
-
+using System.Diagnostics;
 using System.Linq;
 
 
@@ -115,6 +116,8 @@ namespace MovieLibraryEntities.MenuActions
         {
             using (var db = new MovieContext())
             {
+                //var user = db.Users.Include(u => u.Occupation.Id);
+
                 Console.WriteLine("Please enter the user's age: ");
                 var age = Convert.ToInt32(Console.ReadLine());
 
