@@ -1,13 +1,10 @@
-﻿using Castle.DynamicProxy.Generators;
-using MovieLibraryEntities.Context;
+﻿using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 using MovieLibraryOO.Migrations;
 using System;
-using System.Collections.Generic;
-using System.IO.Compression;
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MovieLibraryEntities.MenuActions
 {
@@ -129,7 +126,7 @@ namespace MovieLibraryEntities.MenuActions
 
                 //List all Occupations
                 var occupations = db.Occupations;
-                Console.WriteLine("The occupations are as follows:");
+                Console.WriteLine("Please choose the occupation that is closest to yours:");
                 foreach (var occ in occupations)
                 {
                     Console.WriteLine($"{occ.Id} {occ.Name}");
@@ -146,10 +143,11 @@ namespace MovieLibraryEntities.MenuActions
 
                 db.Users.Add(user);
                 db.SaveChanges();
-                Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {occ.Id}");
 
+                Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {user.Occupation.Name}");
+                //{occ.Id}
             }
-        }
+        }       
     }
 }
 
