@@ -13,7 +13,7 @@ namespace Griswold_A4_Movie_Library_Assignment
         static void Main(string[] args)
         {
             // Menu
-            Console.WriteLine("************\n----Menu----\n************" +
+            Console.WriteLine("************\n    Menu    \n************" +
                 "\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie\n5.Display Movies\n6.Add User");
             var choice = Console.ReadLine();
 

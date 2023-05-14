@@ -18,7 +18,7 @@ namespace MovieLibraryEntities.MenuActions
                 Console.WriteLine("Please enter a movie title: ");
                 var title = Console.ReadLine();
 
-                Console.WriteLine("Please enter movie release date: ");
+                Console.WriteLine("Please enter movie release date (m/d/yyyy): ");
                 var year = Convert.ToDateTime(Console.ReadLine());
 
                 var movie = new Movie();
