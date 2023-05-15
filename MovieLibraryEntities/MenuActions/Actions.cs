@@ -148,7 +148,6 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {user.Occupation.Name}");
-                //{occ.Id}
             }
         }       
     }
