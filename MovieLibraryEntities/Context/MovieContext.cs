@@ -16,11 +16,11 @@ namespace MovieLibraryEntities.Context
         public DbSet<UserMovie> UserMovies { get; set; }
 
         readonly ILogger _logger;
-        //public MovieContext()
-        //{
-        //    var factory = LoggerFactory.Create(m => m.AddFile("logger.log"));
-        //    _logger = factory.CreateLogger<MovieContext>();
-        //}
+        public MovieContext()
+        {   // Could not figure out "AddFile" error -- it caused everything to not work, thus I submitted without the logger functioning
+            var factory = LoggerFactory.Create(m => m.AddFile("logger.log"));
+            _logger = factory.CreateLogger<MovieContext>();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { 
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -29,7 +29,7 @@ namespace MovieLibraryEntities.Context
                 .Build();
 
             optionsBuilder
-               // .LogTo(action => _logger.LogInformation(action), LogLevel.Information)
+                .LogTo(action => _logger.LogInformation(action), LogLevel.Information)
                 .UseLazyLoadingProxies()
                 .UseSqlServer(configuration.GetConnectionString("MovieContext")
             );

@@ -14,7 +14,7 @@ namespace MovieLibraryEntities.MenuActions
 {
     public class Actions
     {
-        //readonly ILogger<IRepository> _logger;
+        readonly ILogger<IRepository> _logger;
         public void AddMovie()
         {
             using (var db = new MovieContext())
@@ -33,7 +33,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
                 Console.WriteLine($"ID: {movie.Id}, Title: {movie.Title}, Release Date: {movie.ReleaseDate}");
 
-                //_logger.LogInformation("Movie has been added.");
+                _logger.LogInformation("Movie has been added.");
             }
         }
 
@@ -51,7 +51,7 @@ namespace MovieLibraryEntities.MenuActions
                     Console.WriteLine($"Your search includes the following titles: \t{movie.Title}");
                 }
 
-                //_logger.LogInformation($"Movie(s) has been searched.");
+                _logger.LogInformation($"Movie(s) has been searched.");
             }
         }
 
@@ -76,7 +76,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
                 Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
 
-                //_logger.LogInformation($"Movie(s) has been updated.");
+                _logger.LogInformation($"Movie(s) has been updated.");
             }
         }
         public void DeleteMovie()
@@ -91,7 +91,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"Movie Deleted: {mov.Title}");
-               // _logger.LogInformation($"Movie(s) has been deleted.");
+                _logger.LogInformation($"Movie(s) has been deleted.");
             }
         }
         public void DisplayMovies()
@@ -110,7 +110,7 @@ namespace MovieLibraryEntities.MenuActions
                 {
                     Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
                 }
-               // _logger.LogInformation($"Movie(s) has been displayed.");
+                _logger.LogInformation($"Movie(s) has been displayed.");
             }
         }
         public void AddUser()
@@ -149,7 +149,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {user.Occupation.Name}");
-               // _logger.LogInformation($"User has been added.");
+                _logger.LogInformation($"User has been added.");
             }
         }  
         public void UserMovieRate()
@@ -177,7 +177,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"User ID: {userMovie.UserId}, Movie ID: {userMovie.MovieId}, Rating: {userMovie.Rating}, Rated At: {userMovie.RatedAt}");
-                //_logger.LogInformation($"User has rated a movie.");
+                _logger.LogInformation($"User has rated a movie.");
             }
         }
     }
