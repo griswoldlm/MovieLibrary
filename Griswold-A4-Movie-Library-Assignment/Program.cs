@@ -14,7 +14,7 @@ namespace Griswold_A4_Movie_Library_Assignment
         {
             // Menu
             Console.WriteLine("************\n    Menu    \n************" +
-                "\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie\n5.Display Movies\n6.Add User");
+                "\n0.Exit Program\n1.Add Movie\n2.Search Movie\n3.Update Movie\n4.Delete Movie\n5.Display Movies\n6.Add User\n7.Add User Movie Rating");
             var choice = Console.ReadLine();
 
             do
@@ -67,6 +67,14 @@ namespace Griswold_A4_Movie_Library_Assignment
                     break;
                 }
 
+                // 7. Add User Movie Rating
+                else if (choice == "7")
+                {
+                    Actions usermovierate = new Actions();
+                    usermovierate.UserMovieRate();
+                    break;
+                }
+
                 // 0. Exit Program
                 else if (choice == "0")
                 {
@@ -74,7 +82,7 @@ namespace Griswold_A4_Movie_Library_Assignment
                     break;
                 }
 
-            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6");
+            } while (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6" || choice == "7");
         }
     }
 }

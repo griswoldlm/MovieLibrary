@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
-using MovieLibraryOO.Migrations;
+using MovieLibraryEntities.Dao;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Castle.Core.Logging;
 
 
 namespace MovieLibraryEntities.MenuActions
 {
     public class Actions
     {
+        readonly ILogger<IRepository> _logger;
         public void AddMovie()
         {
             using (var db = new MovieContext())
@@ -28,6 +32,8 @@ namespace MovieLibraryEntities.MenuActions
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 Console.WriteLine($"ID: {movie.Id}, Title: {movie.Title}, Release Date: {movie.ReleaseDate}");
+
+                _logger.LogInformation("Movie has been added.");
             }
         }
 
@@ -45,39 +51,32 @@ namespace MovieLibraryEntities.MenuActions
                     Console.WriteLine($"Your search includes the following titles: \t{movie.Title}");
                 }
 
-                //var movies = db.Movies;
-
-                //Console.WriteLine("The movies are as follows:");
-                //foreach (var mov in movies)
-                //{
-                //    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
-                //}
+                _logger.LogInformation($"Movie(s) has been searched.");
             }
         }
 
         public void UpdateMovie()
         {
 
+            Console.WriteLine("Please enter a movie title to update: ");
+            var movieTitle = Console.ReadLine();
+
+            using (var db = new MovieContext())
             {
-                Console.WriteLine("Please enter a movie title to update: ");
-                var movieTitle = Console.ReadLine();
-
-                using (var db = new MovieContext())
-                {
-                    var mov = db.Movies.FirstOrDefault(x => x.Title == movieTitle);
-                    Console.WriteLine("Please enter the updated title: ");
-                    var movieUpdateTitle = Console.ReadLine();
-                    mov.Title = movieUpdateTitle;
+                var mov = db.Movies.FirstOrDefault(x => x.Title == movieTitle);
+                Console.WriteLine("Please enter the updated title: ");
+                var movieUpdateTitle = Console.ReadLine();
+                mov.Title = movieUpdateTitle;
 
 
-                    Console.WriteLine("Please enter the updated release date: ");
-                    DateTime year = Convert.ToDateTime(Console.ReadLine());
-                    mov.ReleaseDate = year;
+                Console.WriteLine("Please enter the updated release date: ");
+                DateTime year = Convert.ToDateTime(Console.ReadLine());
+                mov.ReleaseDate = year;
 
-                    db.SaveChanges();
-                    Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
-                    
-                }
+                db.SaveChanges();
+                Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
+
+                _logger.LogInformation($"Movie(s) has been updated.");
             }
         }
         public void DeleteMovie()
@@ -92,6 +91,7 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"Movie Deleted: {mov.Title}");
+                _logger.LogInformation($"Movie(s) has been deleted.");
             }
         }
         public void DisplayMovies()
@@ -110,6 +110,7 @@ namespace MovieLibraryEntities.MenuActions
                 {
                     Console.WriteLine($"ID: {mov.Id}, Title: {mov.Title}, Release Date: {mov.ReleaseDate}");
                 }
+                _logger.LogInformation($"Movie(s) has been displayed.");
             }
         }
         public void AddUser()
@@ -148,8 +149,37 @@ namespace MovieLibraryEntities.MenuActions
                 db.SaveChanges();
 
                 Console.WriteLine($"ID: {user.Id}, Age: {user.Age}, Gender: {user.Gender}, Zip Code: {user.ZipCode}, Occupation: {user.Occupation.Name}");
+                _logger.LogInformation($"User has been added.");
             }
-        }       
+        }  
+        public void UserMovieRate()
+        {
+            using (var db = new MovieContext())
+            {
+                Console.WriteLine("What would you rate the movie? (1 Bad - 5 Great)");
+                var movieRating = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please enter the user ID for the person rating this title: ");
+                var userId = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please enter the movie ID: ");
+                var movieId = Convert.ToInt32(Console.ReadLine());
+
+                var userMovie = new UserMovie();
+                userMovie.Rating = Convert.ToInt32(movieRating);
+                userMovie.RatedAt = DateTime.Now;
+                userMovie.UserId = Convert.ToInt32(userId);
+                userMovie.MovieId = Convert.ToInt32(movieId);
+
+                var movie = new Movie();
+
+                db.UserMovies.Add(userMovie);
+                db.SaveChanges();
+
+                Console.WriteLine($"User ID: {userMovie.UserId}, Movie ID: {userMovie.MovieId}, Rating: {userMovie.Rating}, Rated At: {userMovie.RatedAt}");
+                _logger.LogInformation($"User has rated a movie.");
+            }
+        }
     }
 }
 

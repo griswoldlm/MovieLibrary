@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Castle.Core.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MovieLibraryEntities.Context;
 using MovieLibraryEntities.Models;
 
@@ -8,6 +10,7 @@ namespace MovieLibraryEntities.Dao
     {
         private readonly IDbContextFactory<MovieContext> _contextFactory;
         private readonly MovieContext _context;
+        private readonly ILogger<IRepository> _logger;
 
         public Repository(IDbContextFactory<MovieContext> contextFactory)
         {
