@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using MovieLibraryEntities.Models;
 
 namespace MovieLibraryEntities.Context
@@ -13,15 +14,23 @@ namespace MovieLibraryEntities.Context
         public DbSet<User> Users { get; set; }
         public DbSet<UserMovie> UserMovies { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        readonly ILogger _logger;
+        public MovieContext()
         {
+            var factory = LoggerFactory.Create(m => m.Addfile("logger.log"));
+            _logger = factory.CreateLogger<MovieContext>();
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        { 
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            optionsBuilder.UseSqlServer(
-                configuration.GetConnectionString("MovieContext")
+            optionsBuilder
+                .LogTo(action => _logger.LogInformation(action), LogLevel.Information)
+                .UseLazyLoadingProxies()
+                .UseSqlServer(configuration.GetConnectionString("MovieContext")
             );
         }
     }
