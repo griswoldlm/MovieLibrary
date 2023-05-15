@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MovieLibraryEntities.Models;
+using System.Linq;
 
 namespace MovieLibraryEntities.Context
 {
@@ -17,8 +18,8 @@ namespace MovieLibraryEntities.Context
         readonly ILogger _logger;
         public MovieContext()
         {
-            var factory = LoggerFactory.Create(m => m.Addfile("logger.log"));
-            _logger = factory.CreateLogger<MovieContext>();
+           // var factory = LoggerFactory.Create(m => m.Addfile("logger.log"));
+          //  _logger = factory.CreateLogger<MovieContext>();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { 
@@ -28,8 +29,8 @@ namespace MovieLibraryEntities.Context
                 .Build();
 
             optionsBuilder
-                .LogTo(action => _logger.LogInformation(action), LogLevel.Information)
-                .UseLazyLoadingProxies()
+            //    .LogTo(action => _logger.LogInformation(action), LogLevel.Information)
+             //   .UseLazyLoadingProxies()
                 .UseSqlServer(configuration.GetConnectionString("MovieContext")
             );
         }

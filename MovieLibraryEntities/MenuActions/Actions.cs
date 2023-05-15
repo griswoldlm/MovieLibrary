@@ -130,9 +130,9 @@ namespace MovieLibraryEntities.MenuActions
                 //List all Occupations
                 var occupations = db.Occupations;
                 Console.WriteLine("Please choose the occupation that is closest to yours:");
-                foreach (var occ in occupations)
+                foreach (var occup in occupations)
                 {
-                    Console.WriteLine($"{occ.Id} {occ.Name}");
+                    Console.WriteLine($"{occup.Id} {occup.Name}");
                 }
 
                 Console.WriteLine("Please enter the number of the user's occupation: ");
@@ -142,7 +142,7 @@ namespace MovieLibraryEntities.MenuActions
                 user.Age = age;
                 user.Gender = gender;
                 user.ZipCode = zip;
-                user.Occupation.Id = occupation;
+                user.OccupationId = Convert.ToInt32(occupation);
 
                 db.Users.Add(user);
                 db.SaveChanges();
